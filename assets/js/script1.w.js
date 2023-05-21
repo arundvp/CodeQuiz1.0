@@ -1,19 +1,19 @@
 // Quiz questions and answers
 const questions = [
     {
-      question: "Which built-in method calls a function for each element in the array??",
-      options: ["while()", "loop()", "forEach()", "None of the above."],
-      answer: 2
-    },
-    {
-      question: "Which of the following function of String object extracts a section of a string and returns a new string?",
-      options: ["slice()", "split()", "replace()", "search()"],
-      answer: 0
-    },
-    {
-      question: "Which of the following function of Array object returns a new array comprised of this array joined with other array(s) and/or value(s)?",
-      options: ["pop()", "concat()", "push()", "some()"],
+      question: "What is the capital of France?",
+      options: ["London", "Paris", "Rome", "Berlin"],
       answer: 1
+    },
+    {
+      question: "Which planet is known as the Red Planet?",
+      options: ["Venus", "Mars", "Jupiter", "Mercury"],
+      answer: 1
+    },
+    {
+      question: "What is the chemical symbol for gold?",
+      options: ["Au", "Ag", "Cu", "Fe"],
+      answer: 0
     }
   ];
   

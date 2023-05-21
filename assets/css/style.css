@@ -9,6 +9,7 @@
   }
   
   #options {
+    font-size: 24px;
     margin-bottom: 20px;
   }
   
@@ -17,6 +18,10 @@
     padding: 10px 20px;
   }
   
+  #next-button {
+    display: none; /* Initially hide the next button */
+    margin-bottom: 10px; /* Adjust the margin as needed */
+   }
 
   /* Styles for the correct answer */
 .correct {
@@ -47,15 +52,10 @@
   text-align: center;
 }
 
-#question {
-  margin-bottom: 20px;
+#heading-para {
+font-family: 'Times New Roman', Times, serif;
+font-size: x-large;
+font-weight: bolder;
+margin-left: 20px;
+margin-right: 20px;
 }
-
-#options {
-  margin-bottom: 20px;
-}
-
-#options button {
-  margin: 5px;
-}
-
