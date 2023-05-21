@@ -81,7 +81,7 @@ function checkAnswer(selectedOption) {
     const nextButton = document.getElementById("next-button");
     nextButton.style.display = "block";
   }
-  
+
   // Function to move to the next question
   function nextQuestion() {
     currentQuestion++;
@@ -103,12 +103,28 @@ function checkAnswer(selectedOption) {
     }
   }
   
-  // Function to display the final score
-  function displayScore() {
+//   // Function to display the final score
+//   function displayScore() {
+//     clearInterval(countdownInterval); // Stop the countdown timer
+//     const quizContainer = document.getElementById("quiz-container");
+//     quizContainer.innerHTML = `<h2>Quiz Complete!</h2>
+//                                <p>Your score: ${score}/${questions.length}</p>`;
+//   }
+  
+// Function to display the final score
+function displayScore() {
     clearInterval(countdownInterval); // Stop the countdown timer
     const quizContainer = document.getElementById("quiz-container");
     quizContainer.innerHTML = `<h2>Quiz Complete!</h2>
-                               <p>Your score: ${score}/${questions.length}</p>`;
+                               <p>Your score: ${score}/${questions.length}</p>
+                               <button type="button" id="go-back-button">Go Back</button>`;
+  
+    const goBackButton = document.getElementById("go-back-button");
+    goBackButton.addEventListener("click", () => {
+      // Perform actions to go back to the previous state or page
+      // For example, you can use window.history.back() to go back to the previous page
+      window.history.back();
+    });
   }
   
   // Function to update the countdown timer
