@@ -42,34 +42,24 @@ const questions = [
     });
   }
   
-//   // Function to check the selected answer
-//   function checkAnswer(selectedOption) {
-//     if (selectedOption === questions[currentQuestion].answer) {
-//       score++;
-//     }
-  
-//     // Disable option buttons after selection
-//     const optionButtons = document.querySelectorAll("#options button");
-//     optionButtons.forEach((button) => {
-//       button.disabled = true;
-//     });
-  
-//     // Display the next button
-//     const nextButton = document.getElementById("next-button");
-//     nextButton.style.display = "block";
-//   }
-
 
 // Function to check the selected answer
 function checkAnswer(selectedOption) {
     const selectedButton = document.querySelectorAll("#options button")[selectedOption];
+    const feedbackElement = document.createElement("p");
   
     if (selectedOption === questions[currentQuestion].answer) {
       selectedButton.classList.add("correct");
+      feedbackElement.textContent = "Correct!";
       score++;
     } else {
       selectedButton.classList.add("wrong");
+      feedbackElement.textContent = "Wrong!";
     }
+  
+    // Append the feedback text to the quiz container
+    const quizContainer = document.getElementById("quiz-container");
+    quizContainer.appendChild(feedbackElement);
   
     // Disable option buttons after selection
     const optionButtons = document.querySelectorAll("#options button");
@@ -81,11 +71,11 @@ function checkAnswer(selectedOption) {
     const nextButton = document.getElementById("next-button");
     nextButton.style.display = "block";
   }
-
+ 
   // Function to move to the next question
   function nextQuestion() {
     currentQuestion++;
-  
+      
     // Check if quiz is complete
     if (currentQuestion === questions.length) {
       displayScore();
@@ -103,14 +93,6 @@ function checkAnswer(selectedOption) {
     }
   }
   
-//   // Function to display the final score
-//   function displayScore() {
-//     clearInterval(countdownInterval); // Stop the countdown timer
-//     const quizContainer = document.getElementById("quiz-container");
-//     quizContainer.innerHTML = `<h2>Quiz Complete!</h2>
-//                                <p>Your score: ${score}/${questions.length}</p>`;
-//   }
-  
 // Function to display the final score
 function displayScore() {
     clearInterval(countdownInterval); // Stop the countdown timer
@@ -121,12 +103,11 @@ function displayScore() {
   
     const goBackButton = document.getElementById("go-back-button");
     goBackButton.addEventListener("click", () => {
-      // Perform actions to go back to the previous state or page
-      // For example, you can use window.history.back() to go back to the previous page
-      window.history.back();
+      // Go back to the previous page
+      window.location.href = document.referrer;
     });
   }
-  
+
   // Function to update the countdown timer
   function updateTimer() {
     const timerElement = document.getElementById("timer");
