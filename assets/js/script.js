@@ -44,7 +44,7 @@ const questions = [
   
 
 // Function to check the selected answer
-function checkAnswer(selectedOption) {
+ function checkAnswer(selectedOption) {
     const selectedButton = document.querySelectorAll("#options button")[selectedOption];
     const feedbackElement = document.createElement("p");
   
@@ -71,18 +71,18 @@ function checkAnswer(selectedOption) {
     const nextButton = document.getElementById("next-button");
     nextButton.style.display = "block";
   }
- 
-  // Function to move to the next question
-  function nextQuestion() {
-    currentQuestion++;
-      
-    // Check if quiz is complete
+  
+
+// Function to move to the next question
+function nextQuestion() {
+    currentQuestion++; // Increment the current question index
+  
     if (currentQuestion === questions.length) {
       displayScore();
     } else {
       displayQuestion();
   
-      // Reset options and display the submit button
+      // Reset options and hide the next button
       const optionButtons = document.querySelectorAll("#options button");
       optionButtons.forEach((button) => {
         button.disabled = false;
@@ -92,6 +92,7 @@ function checkAnswer(selectedOption) {
       nextButton.style.display = "none";
     }
   }
+
   
 // Function to display the final score
 function displayScore() {
