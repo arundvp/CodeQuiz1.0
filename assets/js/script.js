@@ -42,10 +42,33 @@ const questions = [
     });
   }
   
-  // Function to check the selected answer
-  function checkAnswer(selectedOption) {
+//   // Function to check the selected answer
+//   function checkAnswer(selectedOption) {
+//     if (selectedOption === questions[currentQuestion].answer) {
+//       score++;
+//     }
+  
+//     // Disable option buttons after selection
+//     const optionButtons = document.querySelectorAll("#options button");
+//     optionButtons.forEach((button) => {
+//       button.disabled = true;
+//     });
+  
+//     // Display the next button
+//     const nextButton = document.getElementById("next-button");
+//     nextButton.style.display = "block";
+//   }
+
+
+// Function to check the selected answer
+function checkAnswer(selectedOption) {
+    const selectedButton = document.querySelectorAll("#options button")[selectedOption];
+  
     if (selectedOption === questions[currentQuestion].answer) {
+      selectedButton.classList.add("correct");
       score++;
+    } else {
+      selectedButton.classList.add("wrong");
     }
   
     // Disable option buttons after selection
@@ -111,6 +134,7 @@ const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", () => {
   startTimer();
   submitButton.disabled = true;
+  submitButton.style.display = "none";
   displayQuestion(); // Add this line to display the first question
 });
 
