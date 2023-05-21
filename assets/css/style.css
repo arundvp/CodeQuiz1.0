@@ -1,0 +1,19 @@
+#timer {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  #question {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #options {
+    margin-bottom: 20px;
+  }
+  
+  #submit {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  
