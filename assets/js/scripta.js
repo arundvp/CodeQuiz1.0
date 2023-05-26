@@ -1,19 +1,19 @@
 // Quiz questions and answers
 const questions = [
     {
-      question: "Which built-in method calls a function for each element in the array??",
-      options: ["while()", "loop()", "forEach()", "None of the above."],
-      answer: 2
-    },
-    {
-      question: "Which of the following function of String object extracts a section of a string and returns a new string?",
-      options: ["slice()", "split()", "replace()", "search()"],
-      answer: 0
-    },
-    {
-      question: "Which of the following function of Array object returns a new array comprised of this array joined with other array(s) and/or value(s)?",
-      options: ["pop()", "concat()", "push()", "some()"],
+      question: "What is the capital of France?",
+      options: ["London", "Paris", "Rome", "Berlin"],
       answer: 1
+    },
+    {
+      question: "Which planet is known as the Red Planet?",
+      options: ["Venus", "Mars", "Jupiter", "Mercury"],
+      answer: 1
+    },
+    {
+      question: "What is the chemical symbol for gold?",
+      options: ["Au", "Ag", "Cu", "Fe"],
+      answer: 0
     }
   ];
   
@@ -22,7 +22,27 @@ const questions = [
   let timeLeft = 60; // Countdown timer in seconds
   let countdownInterval; // Interval ID for the countdown timer
   let highScores = []; // Array to store high scores
-   
+  
+//   // Function to display the current question
+//   function displayQuestion() {
+//     const questionElement = document.getElementById("question");
+//     const optionsElement = document.getElementById("options");
+  
+//     // Display question
+//     questionElement.textContent = questions[currentQuestion].question;
+  
+//     // Clear options
+//     optionsElement.innerHTML = "";
+  
+//     // Display options
+//     questions[currentQuestion].options.forEach((option, index) => {
+//       const optionButton = document.createElement("button");
+//       optionButton.textContent = option;
+//       optionButton.addEventListener("click", () => checkAnswer(index));
+//       optionsElement.appendChild(optionButton);
+//     });
+//   }
+  
 // Function to display the current question
 function displayQuestion() {
     const questionElement = document.getElementById("question");
@@ -50,11 +70,11 @@ function checkAnswer(selectedOption) {
   
     if (selectedOption === questions[currentQuestion].answer) {
       selectedButton.classList.add("correct");
-    //  feedbackElement.textContent = "Correct!";
+      feedbackElement.textContent = "Correct!";
       score++;
     } else {
       selectedButton.classList.add("wrong");
-    //  feedbackElement.textContent = "Wrong!";
+      feedbackElement.textContent = "Wrong!";
     }
   
     // Append the feedback text to the quiz container
@@ -70,7 +90,6 @@ function checkAnswer(selectedOption) {
     // Display the next button
     const nextButton = document.getElementById("next-button");
     nextButton.style.display = "block";
-    nextButton.addEventListener("click", nextQuestion);
   }
 
 // Function to move to the next question
@@ -112,50 +131,16 @@ function displayScore() {
       window.location.href = document.referrer;
     });
   
- 
-// // Function to display the high scores
-function displayHighScores() {
-  const highScoresContainer = document.getElementById("high-scores-container");
-
-  // Retrieve the high scores from local storage
-  const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-  if (highScores.length > 0) {
-    const highScoresList = document.createElement("ol");
-    
-           highScores.forEach((highScore) => {
-      const listItem = document.createElement("li");
-      // listItem.textContent = `${highScores.initials}: ${highScores.score}`;
-      listItem.innerHTML = `${highScore.initials}: ${highScore.score}`;
-      // listItem.innerHTML = highScores;
-      highScoresList.appendChild(listItem);
-
-      console.log(highScores.initials);
-
+    const submitInitialButton = document.getElementById("submit-initial");
+    submitInitialButton.addEventListener("click", () => {
+      const initialsInput = document.getElementById("initial");
+      const initials = initialsInput.value.trim();
+      // Handle the initials submission here
+      // Example: console.log(initials);
     });
-
-        highScoresContainer.appendChild(highScoresList);
-  } else {
-    highScoresContainer.textContent = "No high scores yet.";
   }
-}
 
-
-  // Call the displayHighScores function to show the high scores initially
-  const submitInitialButton = document.getElementById("submit-initial");
-  submitInitialButton.addEventListener("click", () => {
-    const initialsInput = document.getElementById("initial");
-    const initials = initialsInput.value.trim();
-    if (initials !== "") {
-      // Save the high score with initials to local storage
-     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-      highScores.push({ initials, score });
-      localStorage.setItem("highScores", JSON.stringify(highScores));
-    }
-    displayHighScores();
-  });
-}
-  
-// Function to clear the feedback
+  // Function to clear the feedback
 function clearFeedback() {
     const feedbackElement = document.querySelector("#quiz-container p");
     if (feedbackElement) {
@@ -169,6 +154,17 @@ function saveHighScore(initials) {
     highScores.push(highScore);
   }
 
+// Function to display the high scores
+function displayHighScores() {
+  const highScoreContainer = document.getElementById("high-score-container");
+  highScoreContainer.innerHTML = "<h2>High Scores</h2>";
+
+  highScores.forEach((highScore) => {
+    const scoreItem = document.createElement("p");
+    scoreItem.textContent = `${highScore.initials} - ${highScore.score}`;
+    highScoreContainer.appendChild(scoreItem);
+  });
+}
 
   // Function to update the countdown timer
   function updateTimer() {
@@ -191,16 +187,10 @@ function saveHighScore(initials) {
 // Add event listener to the submit button
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", () => {
-// Hide the header and Paragraph
-    const quizTitle = document.getElementById("quiz-title");
-    quizTitle.style.display = "none";
-
-    const quizPara = document.getElementById("heading-para");
-    quizPara.style.display = "none";
-    startTimer();
-    submitButton.disabled = true;
-    submitButton.style.display = "none";
-    displayQuestion();
+  startTimer();
+  submitButton.disabled = true;
+  submitButton.style.display = "none";
+  displayQuestion();
 });
 
 // Add event listener to the next button

@@ -21,8 +21,9 @@ const questions = [
   let score = 0; // User's score
   let timeLeft = 60; // Countdown timer in seconds
   let countdownInterval; // Interval ID for the countdown timer
-  let highScores = []; // Array to store high scores
-   
+  //let highScores = []; // Array to store high scores
+  let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+ 
 // Function to display the current question
 function displayQuestion() {
     const questionElement = document.getElementById("question");
@@ -118,7 +119,7 @@ function displayHighScores() {
   const highScoresContainer = document.getElementById("high-scores-container");
 
   // Retrieve the high scores from local storage
-  const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  // const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
   if (highScores.length > 0) {
     const highScoresList = document.createElement("ol");
     
@@ -147,7 +148,7 @@ function displayHighScores() {
     const initials = initialsInput.value.trim();
     if (initials !== "") {
       // Save the high score with initials to local storage
-     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+      //const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
       highScores.push({ initials, score });
       localStorage.setItem("highScores", JSON.stringify(highScores));
     }
