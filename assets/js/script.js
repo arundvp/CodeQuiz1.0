@@ -27,6 +27,21 @@ const questions = [
 function displayQuestion() {
     const questionElement = document.getElementById("question");
     const optionsElement = document.querySelector("#options ul");
+
+    // Add hover styles using CSS
+    optionsElement.style.listStyle = "none";
+    optionsElement.style.padding = "0";
+    optionsElement.style.margin = "0";
+    optionsElement.style.fontFamily = "Arial, sans-serif";
+
+    // Add hover effect
+    optionsElement.addEventListener("mouseover", function() {
+      optionsElement.style.backgroundColor = "lightgray";
+    });
+
+    optionsElement.addEventListener("mouseout", function() {
+      optionsElement.style.backgroundColor = "transparent";
+    });
   
     // Display question
     questionElement.textContent = questions[currentQuestion].question;
@@ -112,31 +127,36 @@ function displayScore() {
       window.location.href = document.referrer;
     });
   
- 
-// // Function to display the high scores
 function displayHighScores() {
   const highScoresContainer = document.getElementById("high-scores-container");
 
+  // Create a heading element
+  const heading = document.createElement("h2");
+  heading.textContent = "High Scores";
+  highScoresContainer.appendChild(heading);
+
   // Retrieve the high scores from local storage
-  const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  
+  // Sort the high scores in descending order
+  highScores.sort((a, b) => b.score - a.score);
+
   if (highScores.length > 0) {
     const highScoresList = document.createElement("ol");
-    
-           highScores.forEach((highScore) => {
+
+    highScores.forEach((highScore) => {
       const listItem = document.createElement("li");
-      // listItem.textContent = `${highScores.initials}: ${highScores.score}`;
       listItem.innerHTML = `${highScore.initials}: ${highScore.score}`;
-      // listItem.innerHTML = highScores;
       highScoresList.appendChild(listItem);
-
-      console.log(highScores.initials);
-
     });
 
-        highScoresContainer.appendChild(highScoresList);
+    highScoresContainer.appendChild(highScoresList);
   } else {
     highScoresContainer.textContent = "No high scores yet.";
   }
+
+  // Automatically clear the local storage after displaying the high scores
+  localStorage.removeItem("highScores");
 }
 
 
